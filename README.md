@@ -1,6 +1,6 @@
 # nvim-e
 
-Quick commandline tool to open a file from neovims :terminal into the parent neovim process
+Quick commandline tool to open a file from neovims `:terminal` into the parent neovim process
 
 
 Usage:
