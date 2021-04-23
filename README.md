@@ -5,8 +5,21 @@ Quick commandline tool to open a file from neovims `:terminal` into the parent n
 
 Usage:
 
+### with volta (recommended)
 ```sh
 volta install nvim-e
+```
+
+### with npm
+
+```sh
+npm i -g nvim-e
+```
+
+### with yarn
+
+```sh
+yarn global add nvim-e
 ```
 
 then when in a neovim's `:terminal` type:
