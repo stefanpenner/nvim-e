@@ -1,0 +1,13 @@
+{
+  "name": "neovim-e",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "nvim-e": "./nvim-e.js"
+  },
+  "dependencies": {
+    "neovim": "^4.10.0",
+    "wtfnode": "^0.8.4"
+  }
+}
