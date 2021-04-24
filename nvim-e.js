@@ -5,11 +5,11 @@ process.env.NVIM_NODE_LOG_LEVEL = "error";
 const path = require("path");
 
 (async function () {
-  const nvim = await require("neovim/scripts/nvim.js");
   const _files = process.argv.slice(2);
   if (_files.length === 0) {
     console.error("neovim-e requires at-least one file input, but got none");
-    process.exit(1);
+    process.exitCode = 1;
+    return;
   }
 
   const files = [];
@@ -21,12 +21,18 @@ const path = require("path");
     }
   }
 
+  const nvim = await require("neovim/scripts/nvim.js");
   await nvim.command(`edit ${files.join(" ")}`);
+  const buffer = await nvim.buffer;
 
-  const disconnect = new Promise((resolve) => nvim.on("disconnect", resolve));
+  // TODO: support N buffers
+  await new Promise((resolve) => {
+    // when the opened buffer closes, exist.
+    buffer.listen("detach", resolve);
+  });
 
+  // TODO: I couldn't find a more reasonable way to "detach" the node-client
+  // from nvim, without existing nvim.
   nvim.transport.writer.end();
   nvim.transport.reader.end();
-
-  await disconnect;
 })();
