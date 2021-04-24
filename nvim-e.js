@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 "use strict";
-process.env.NVIM_NODE_LOG_LEVEL = 'error';
+process.env.NVIM_NODE_LOG_LEVEL = "error";
 
 const path = require("path");
 
@@ -23,7 +23,7 @@ const path = require("path");
 
   await nvim.command(`edit ${files.join(" ")}`);
 
-  const disconnect = new Promise(resolve => nvim.on('disconnect', resolve));
+  const disconnect = new Promise((resolve) => nvim.on("disconnect", resolve));
 
   nvim.transport.writer.end();
   nvim.transport.reader.end();
